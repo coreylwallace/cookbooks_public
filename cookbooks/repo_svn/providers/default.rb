@@ -46,8 +46,9 @@ action :pull do
   ruby_block "Checkout new Subversion repository to #{new_resource.destination}" do
     not_if do ::File.directory?(new_resource.destination) end
     block do
-      Chef::Log.info "Creating new repo at #{new_resource.destination} #{params} #{new_resource.repository}"
-      Chef::Log.info `svn checkout #{params} #{new_resource.repository} #{new_resource.destination}`
+      Chef::Log.info "block executed"
+     # Chef::Log.info "Creating new repo at #{new_resource.destination} #{params} #{new_resource.repository}"
+      #Chef::Log.info `svn checkout #{params} #{new_resource.repository} #{new_resource.destination}`
     end
   end
  
