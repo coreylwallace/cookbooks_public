@@ -9,6 +9,8 @@
 
 rs_utils_marker :begin
 
+provider "repo_svn"
+
 repo "repo_svn" do
   destination "/tmp"
   repository node[:repo_test][:repository]
