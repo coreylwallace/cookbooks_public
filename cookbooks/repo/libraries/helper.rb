@@ -12,7 +12,7 @@ module RightScale
         self
       end
 
-  def capistrano_pull(destination,repository,revision)
+  def self.capistrano_pull(destination,repository,revision)
     directory "#{destination.chomp}/shared/" do
       recursive true
     end
