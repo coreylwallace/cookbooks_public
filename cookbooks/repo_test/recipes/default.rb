@@ -19,7 +19,7 @@ repo "repo_svn" do
   svn_username node[:repo_test][:svn_username]
   svn_password node[:repo_test][:svn_password]
   action :pull
-  provider "repo_svn"
+  provider node[:repo_test][:provider_type] #"repo_svn"
 end
 
 rs_utils_marker :end
