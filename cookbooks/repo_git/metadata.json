@@ -1,31 +1,135 @@
 {
-  "dependencies": {
-    "git": ">= 0.0.0"
-  },
   "name": "repo_git",
+  "description": "Manages the Git fast version control system",
+  "long_description": "",
+  "maintainer": "RightScale, Inc.",
   "maintainer_email": "support@rightscale.com",
-  "attributes": {
-  },
-  "license": "Copyright (c) 2011 RightScale, Inc.\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n'Software'), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.\nIN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY\nCLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,\nTORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-  "suggestions": {
-  },
+  "license": "Copyright RightScale, Inc. All rights reserved.  All access and use subject to the RightScale Terms of Service available at http://www.rightscale.com/terms.php and, if applicable, other agreements such as a RightScale Master Subscription Agreement.\n",
   "platforms": {
   },
-  "maintainer": "RightScale, Inc.",
-  "long_description": "",
-  "version": "0.0.1",
+  "dependencies": {
+    "git": ">= 0.0.0",
+    "repo": ">= 0.0.0"
+  },
   "recommendations": {
   },
-  "recipes": {
-  },
-  "groupings": {
+  "suggestions": {
   },
   "conflicting": {
   },
+  "providing": {
+    "provider:repo": ">= 0.0.0",
+    "repo_git": ">= 0.0.0"
+  },
   "replacing": {
   },
-  "description": "Installs Git's Fast Version Control System.",
-  "providing": {
-    "repo_git": ">= 0.0.0"
-  }
+  "attributes": {
+    "repo/default/provider": {
+      "display_name": "Repository Provider Type",
+      "description": "",
+      "default": "repo_git",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/repository": {
+      "display_name": "Repository Url",
+      "description": "",
+      "required": "required",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/branch": {
+      "display_name": "Branch/Tag",
+      "description": "",
+      "required": "optional",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/depth": {
+      "display_name": "Depth",
+      "description": "",
+      "default": null,
+      "required": "optional",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/enable_submodules": {
+      "display_name": "Enable Submodules",
+      "description": "",
+      "default": "false",
+      "required": "optional",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/remote": {
+      "display_name": "Remote",
+      "description": "",
+      "default": "origin",
+      "required": "optional",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    },
+    "repo/default/ssh_key": {
+      "display_name": "SSH Key",
+      "description": "",
+      "default": null,
+      "required": "optional",
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "recipes": [
+
+      ]
+    }
+  },
+  "groupings": {
+    "repo/default": {
+      "display_name": "Git Client Default Settings",
+      "description": "Settings for managing a Git source repository",
+      "databag": true
+    }
+  },
+  "recipes": {
+    "repo_git::default": "Default pattern of loading packages and resources provided"
+  },
+  "version": "0.0.1"
 }

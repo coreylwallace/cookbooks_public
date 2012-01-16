@@ -6,6 +6,7 @@ long_description "Provides a chef lightweight resource called 'repo' as a Bridge
 version          "0.0.1"
 
 depends "repo_svn"
+depends "repo_git"
 
 provides "resource:repo"  # not really in metadata spec yet. Format TBD.
   
