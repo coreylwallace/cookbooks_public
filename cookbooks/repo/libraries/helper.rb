@@ -8,10 +8,10 @@
 module RightScale
   module Repo
     module Helper
-      def init
-        self
-      end
-
+   #   def init
+    #    self
+   #   end
+   #
   def self.capistrano_pull(destination,repository,revision)
     directory "#{destination.chomp}/shared/" do
       recursive true
