@@ -14,7 +14,9 @@ module RightScale
    #
   def self.capistrano_pull(destination,repository,revision)
 
-    Chef::Resource::Directory.new ("#{destination.chomp}/shared/")
+    shared_dir = Chef::Resource::Directory.new
+    shared_dir.path = ("#{destination.chomp}/shared/")
+    shared_dir.action_create
     #Chef::Directory "#{destination.chomp}/shared/" do
     #  recursive true
     #end
