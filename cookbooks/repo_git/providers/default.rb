@@ -82,6 +82,11 @@ end
 action :capistrano_pull do
 
 #RightScale::Repo::Helper.add_ssh_key
+
+  directory "#{new_resource.destination.chomp}/shared/" do
+    recursive true
+  end
+
   deploy new_resource.destination do
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
