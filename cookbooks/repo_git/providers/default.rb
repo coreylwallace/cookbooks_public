@@ -82,7 +82,8 @@ end
 action :capistrano_pull do
 
 #RightScale::Repo::Helper.add_ssh_key
-
+  RightScale::Repo::Helper.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
+=begin
   directory "#{new_resource.destination.chomp}/shared/" do
     recursive true
   end
@@ -100,6 +101,6 @@ action :capistrano_pull do
     action :deploy
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
-
+=end
 
 end
