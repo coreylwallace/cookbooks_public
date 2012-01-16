@@ -16,7 +16,8 @@ module RightScale
 
     Chef::Resource::Directory.new("#{destination.chomp}/shared/") do |o|
     #o.path = "#{destination.chomp}/shared/"
-    o.action_create
+      o.load_current_resource
+      o.action_create
     end
 
     #Chef::Directory "#{destination.chomp}/shared/" do
