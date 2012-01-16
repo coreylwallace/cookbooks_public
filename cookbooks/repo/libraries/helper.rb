@@ -4,7 +4,6 @@
 # Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
- include Chef::Provider
 
 module RightScale
   module Repo
@@ -15,17 +14,16 @@ module RightScale
    #
   def self.capistrano_pull(destination,repository,revision)
      destination = "/tmp/repo"
+      @new_resource.each do |o|
+     puts o
+  end
+
+     Chef::Resource::Directory.new("#{destination.chomp}/shared/").action_create
 
 
-    Chef::Resource::Directory.new("#{destination.chomp}/shared/") do |o|
-    #o.path = "#{destination.chomp}/shared/"
-      o.load_current_resource
-      o.action_create
-    end
-
-    directory "#{destination.chomp}/shared/" do
-      recursive true
-    end
+  #  directory "#{destination.chomp}/shared/" do
+  #    recursive true
+  #  end
 
 
   #  deploy destination do
