@@ -14,6 +14,7 @@ module RightScale
    #
   def self.capistrano_pull(destination,repository,revision)
      destination = "/tmp/repo"
+     @new_resource.path = destination
     Chef::Resource::Directory.new("#{destination.chomp}/shared/") do |o|
     #o.path = "#{destination.chomp}/shared/"
       o.load_current_resource
