@@ -20,19 +20,19 @@ module RightScale
     #end
 
 
-    deploy destination do
-      repo "#{repository.chomp}"
-      revision revision
-      #user node[:tomcat][:app_user]
-      enable_submodules true
-      migrate false
-      create_dirs_before_symlink %w{}
-      symlink_before_migrate({})
-      symlinks({})
-      shallow_clone true
-      action :deploy
-      #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
-    end
+  #  deploy destination do
+  #    repo "#{repository.chomp}"
+  #    revision revision
+  #    #user node[:tomcat][:app_user]
+  #    enable_submodules true
+  #    migrate false
+  #    create_dirs_before_symlink %w{}
+  #    symlink_before_migrate({})
+  #    symlinks({})
+  #    shallow_clone true
+  #    action :deploy
+  #    #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
+  #  end
 
 
   end
