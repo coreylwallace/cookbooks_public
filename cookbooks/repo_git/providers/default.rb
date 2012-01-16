@@ -78,3 +78,23 @@ action :pull do
   end
  
 end
+
+action :capistrano_pull do
+
+#RightScale::Repo::Helper.add_ssh_key
+  deploy new_resource.destination do
+    repo "#{new_resource.repository.chomp}"
+    revision new_resource.revision
+    #user node[:tomcat][:app_user]
+    enable_submodules true
+    migrate false
+    create_dirs_before_symlink %w{}
+    symlink_before_migrate({})
+    symlinks({})
+    shallow_clone true
+    action :deploy
+    #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
+  end
+
+
+end

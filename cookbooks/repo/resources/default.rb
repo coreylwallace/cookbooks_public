@@ -24,6 +24,7 @@
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 actions :pull
+actions :capistrano_pull
 
 attribute :destination, :kind_of => String
 attribute :repository, :kind_of => String
