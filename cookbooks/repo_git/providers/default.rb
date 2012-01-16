@@ -5,6 +5,7 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
+include RightScale::Repo::Helper
 
 action :pull do
  
@@ -63,7 +64,7 @@ action :pull do
 end
 
 action :capistrano_pull do
- include RightScale::Repo::Helper
+
 #RightScale::Repo::Helper.add_ssh_key
   RightScale::Repo::Helper.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 =begin
