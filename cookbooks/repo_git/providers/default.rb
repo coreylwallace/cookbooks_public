@@ -23,7 +23,7 @@
 # OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 # WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-include RightScale::Repo::Helper
+
 
 action :pull do
  
@@ -82,7 +82,7 @@ action :pull do
 end
 
 action :capistrano_pull do
-
+ include RightScale::Repo::Helper
 #RightScale::Repo::Helper.add_ssh_key
   RightScale::Repo::Helper.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 =begin
