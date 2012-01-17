@@ -24,7 +24,7 @@ module RightScale
     end
 
 
-    Chef::Resource::Deploy destination do
+    Chef::Resource::Deploy.new destination do
       repo "#{repository.chomp}"
       revision revision
       #user node[:tomcat][:app_user]
