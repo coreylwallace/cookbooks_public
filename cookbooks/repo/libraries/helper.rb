@@ -18,7 +18,7 @@ module RightScale
   #   Chef::Resource::Directory.new("shared","#{destination.chomp}")
 
 
-    Chef::Resource::Directory "#{destination.chomp}/shared/" do
+    Chef::Resource::Directory.new "#{destination.chomp}/shared/" do
       recursive true
     end
 
