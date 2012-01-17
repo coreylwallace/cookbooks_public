@@ -7,9 +7,21 @@
 
 module RightScale
   module Repo
-    class Helper
+    class Ssh_key
 
-      def create_ssh_key
+      def create_ssh_key(ssh_key)
+        Chef::Log.info("Creating dir")
+
+        keyfile = nil
+         keyname = ssh_key
+         if "#{keyname}" != ""
+           keyfile = "/tmp/gitkey"
+           system("echo -n '#{keyname}' > #{keyfile}")
+           system("chmod 700 #{keyfile}")
+           system("echo 'exec ssh -oStrictHostKeyChecking=no -i #{keyfile} \"$@\"' > #{keyfile}.sh")
+           system("chmod +x #{keyfile}.sh")
+         end
+
 
       end
 

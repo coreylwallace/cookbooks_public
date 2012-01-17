@@ -65,10 +65,12 @@ action :pull do
 end
 
 action :capistrano_pull do
-              Chef::Log.info "teee"
-#RightScale::Repo::Helper.add_ssh_key
-  RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
-=begin
+  Chef::Log.info "teee"
+  #RightScale::Repo::Helper.add_ssh_key
+  #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
+
+  RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key) unless (new_resource.ssh_key != "")
+
   directory "#{new_resource.destination.chomp}/shared/" do
     recursive true
   end
@@ -86,6 +88,6 @@ action :capistrano_pull do
     action :deploy
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
-=end
+
 
 end
