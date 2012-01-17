@@ -7,7 +7,7 @@
 
 module RightScale
   module Repo
-    module Helper
+    class Helper
    #   def init
     #    self
    #   end
@@ -38,9 +38,6 @@ module RightScale
       #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
     end
 
-    def self.test
-      puts "test"
-    end
 
   end
 =begin

@@ -65,9 +65,9 @@ action :pull do
 end
 
 action :capistrano_pull do
-
+              Chef::Log.info "teee"
 #RightScale::Repo::Helper.add_ssh_key
-  RightScale::Repo::Helper.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
+  RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 =begin
   directory "#{new_resource.destination.chomp}/shared/" do
     recursive true
