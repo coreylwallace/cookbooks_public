@@ -9,7 +9,7 @@ module RightScale
   module Repo
     class Ssh_key
 
-      def create_ssh_key(ssh_key)
+      def create(ssh_key)
         Chef::Log.warn("Creating key")
 
         keyfile = nil
