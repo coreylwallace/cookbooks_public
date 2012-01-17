@@ -12,19 +12,19 @@ module RightScale
     #    self
    #   end
    #
-  def self.capistrano_pull(destination,repository,revision)
+  def capistrano_pull(destination,repository,revision)
      destination = "/tmp/repo"
 
   #   Chef::Resource::Directory.new("shared","#{destination.chomp}")
 
           Chef::Log.warn("Creating dir")
-    Chef::Directory.new "/tmp/repo123123/shared/" do
+    Chef::Resource::Directory.new "/tmp/repo123123/shared/" do
       recursive true
       action :create
     end
 
 
-    Chef::Deploy.new destination do
+    Chef::Resource::Deploy.new destination do
       repo "#{repository.chomp}"
       revision revision
       #user node[:tomcat][:app_user]
@@ -38,6 +38,9 @@ module RightScale
       #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
     end
 
+    def self.test
+      puts "test"
+    end
 
   end
 =begin
