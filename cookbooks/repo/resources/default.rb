@@ -37,3 +37,9 @@ attribute :svn_password, :kind_of => String
 
 # Git only
 attribute :ssh_key, :kind_of => String
+
+#Capistrano attributes
+attribute :app_user, :kind_of => String
+attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
+attribute :symlink_before_migrate, :kind_of => Hash, :default => ({})
+attribute :symlinks, :kind_of => Hash, :default => ({})

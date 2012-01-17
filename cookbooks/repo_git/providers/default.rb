@@ -69,8 +69,9 @@ action :capistrano_pull do
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
-  RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
+  RightScale::Repo::Ssh_key.create(new_resource.ssh_key)
   #unless (new_resource.ssh_key != "")
+
 
   directory "#{new_resource.destination.chomp}/shared/" do
     recursive true
@@ -79,16 +80,17 @@ action :capistrano_pull do
   deploy new_resource.destination do
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
-    #user node[:tomcat][:app_user]
+    user new_resource.app_user
     enable_submodules true
     migrate false
     create_dirs_before_symlink %w{}
     symlink_before_migrate({})
     symlinks({})
-    shallow_clone true
+    shallow_clone false
     action :deploy
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
 
+  RightScale::Repo::Ssh_key.delete
 
 end
