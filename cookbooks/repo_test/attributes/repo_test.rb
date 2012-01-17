@@ -3,3 +3,4 @@
   set_unless[:repo_test][:provider_type] = ""
   set_unless[:repo_test][:svn_username] = ""
   set_unless[:repo_test][:svn_password] = ""
+  set_unless[:repo_test][:ssh_key] = ""

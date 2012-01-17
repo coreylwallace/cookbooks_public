@@ -18,6 +18,7 @@ repo "repo_svn" do
   provider_type node[:repo_test][:provider_type]
   svn_username node[:repo_test][:svn_username]
   svn_password node[:repo_test][:svn_password]
+  ssh_key node[:repo_test][:ssh_key]
   action :capistrano_pull
   provider node[:repo_test][:provider_type] #"repo_svn"
 end

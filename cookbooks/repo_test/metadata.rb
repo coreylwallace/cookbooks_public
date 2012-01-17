@@ -42,3 +42,8 @@ attribute "repo_test/svn_password",
   :default => "",
   :recipes => ["repo_test::default"]
 
+attribute "repo_test/ssh_key",
+  :display_name => "repo_test/ssh_key",
+  :description => "repo_test/ssh_key",
+  :default => "",
+  :recipes => ["repo_test::default"]

@@ -92,6 +92,20 @@
       "calculated": false,
       "type": "string",
       "required": "optional"
+    },
+    "repo_test/ssh_key": {
+      "display_name": "repo_test/ssh_key",
+      "description": "repo_test/ssh_key",
+      "default": "",
+      "recipes": [
+        "repo_test::default"
+      ],
+      "choice": [
+
+      ],
+      "calculated": false,
+      "type": "string",
+      "required": "optional"
     }
   },
   "groupings": {
