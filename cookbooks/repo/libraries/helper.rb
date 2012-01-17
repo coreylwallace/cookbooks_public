@@ -18,13 +18,13 @@ module RightScale
   #   Chef::Resource::Directory.new("shared","#{destination.chomp}")
 
           Chef::Log.warn("Creating dir")
-    Chef::Resource::Directory.new "/tmp/repo123123/shared/" do
+    Chef::Directory.new "/tmp/repo123123/shared/" do
       recursive true
       action :create
     end
 
 
-    Chef::Resource::Deploy.new destination do
+    Chef::Deploy.new destination do
       repo "#{repository.chomp}"
       revision revision
       #user node[:tomcat][:app_user]
