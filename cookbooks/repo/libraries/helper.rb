@@ -17,26 +17,26 @@ module RightScale
 
   #   Chef::Resource::Directory.new("shared","#{destination.chomp}")
 
-          puts "Creating dir"
+          Chef::Log.warn("Creating dir")
     Chef::Resource::Directory.new "/tmp/repo123123/shared/" do
       recursive true
       action :create
     end
 
 
-  #  deploy destination do
-  #    repo "#{repository.chomp}"
-  #    revision revision
-  #    #user node[:tomcat][:app_user]
-  #    enable_submodules true
-  #    migrate false
-  #    create_dirs_before_symlink %w{}
-  #    symlink_before_migrate({})
-  #    symlinks({})
-  #    shallow_clone true
-  #    action :deploy
-  #    #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
-  #  end
+    Chef::Resource::Deploy destination do
+      repo "#{repository.chomp}"
+      revision revision
+      #user node[:tomcat][:app_user]
+      enable_submodules true
+      migrate false
+      create_dirs_before_symlink %w{}
+      symlink_before_migrate({})
+      symlinks({})
+      shallow_clone true
+      action :deploy
+      #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
+    end
 
 
   end
