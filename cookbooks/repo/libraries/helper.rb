@@ -20,6 +20,7 @@ module RightScale
 
     Chef::Resource::Directory.new "#{destination.chomp}/shared/" do
       recursive true
+      action :create
     end
 
 
