@@ -65,11 +65,12 @@ action :pull do
 end
 
 action :capistrano_pull do
-  Chef::Log.info "teee"
+  Log "Started capistrano git deployment creation"
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
-  RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key) unless (new_resource.ssh_key != "")
+  RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
+  #unless (new_resource.ssh_key != "")
 
   directory "#{new_resource.destination.chomp}/shared/" do
     recursive true

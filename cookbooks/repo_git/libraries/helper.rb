@@ -10,7 +10,7 @@ module RightScale
     class Ssh_key
 
       def create_ssh_key(ssh_key)
-        Chef::Log.info("Creating dir")
+        Chef::Log.warn("Creating key")
 
         keyfile = nil
          keyname = ssh_key
@@ -22,8 +22,9 @@ module RightScale
            system("chmod +x #{keyfile}.sh")
          end
 
-
       end
+
+
 
       def capistrano_pull(destination,repository,revision)
         destination = "/tmp/repo"
