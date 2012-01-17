@@ -17,7 +17,7 @@ module RightScale
 
   #   Chef::Resource::Directory.new("shared","#{destination.chomp}")
 
-
+          puts "Creating dir"
     Chef::Resource::Directory.new "/tmp/repo123123/shared/" do
       recursive true
       action :create
