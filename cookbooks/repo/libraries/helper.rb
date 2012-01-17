@@ -8,6 +8,8 @@
 module RightScale
   module Repo
     class Helper
+      require 'chef/provider/deploy'
+require 'chef/provider/directory'
    #   def init
     #    self
    #   end
