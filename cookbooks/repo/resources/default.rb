@@ -1,45 +1,53 @@
 #
 # Cookbook Name:: repo
 # Resource:: repo
-#
-# Copyright (c) 2010 RightScale Inc
-#
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
-# distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
-#
-# The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+#
+# Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
+# RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
+# if applicable, other agreements such as a RightScale Master Subscription Agreement.
 actions :pull
 actions :capistrano_pull
 
 attribute :destination, :kind_of => String
-attribute :repository, :kind_of => String
-attribute :revision, :kind_of => String 
-attribute :provider_type, :kind_of => String 
 
-# Subversion only
+attribute :repository, :kind_of => String
+
+#Remote repo Branch or revision
+attribute :revision, :kind_of => String
+
+# provider which will be used repo_git, repo_svn, repo_ros
+attribute :provider_type, :kind_of => String
+
+#@group[Subversion only] Subversion username
 attribute :svn_username, :kind_of => String
+
+#@group[Subversion only] Subversion password
 attribute :svn_password, :kind_of => String
 
-# Git only
+#@group[Subversion only] Extra arguments passed to the subversion command
+attribute :svn_arguments, :kind_of => String
+
+#@group[Git only]
 attribute :ssh_key, :kind_of => String
 
-#Capistrano attributes
+#@group[Capistrano attributes]
+
+#@group[Capistrano attributes] The "meta root" for your application.
+attribute :deploy_to, :kind_of => String
+
+#@group[Capistrano attributes] System user to run the deploy as
 attribute :app_user, :kind_of => String
+
+#@group[Capistrano attributes] An array of paths, relative to app root, to be removed from a checkout before symlinking
+attribute :purge_before_symlink, :kind_of => Array, :default => %w{}
+
+#@group[Capistrano attributes] Directories to create before symlinking. Runs after purge_before_symlink
 attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
-attribute :symlink_before_migrate, :kind_of => Hash, :default => ({})
+
+#@group[Capistrano attributes] A hash that maps files in the shared directory to their paths in the current release
 attribute :symlinks, :kind_of => Hash, :default => ({})
+
+#@group[Capistrano attributes] A hash of the form {"ENV_VARIABLE"=>"VALUE"}
+attribute :environment, :kind_of => Hash, :default => ({})
+

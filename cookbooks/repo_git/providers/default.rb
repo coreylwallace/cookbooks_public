@@ -77,17 +77,18 @@ action :capistrano_pull do
     recursive true
   end
 
-  deploy new_resource.destination do
+  deploy "#{new_resource.destination}/capistrano" do
+    deploy_to new_resource.destination
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     user new_resource.app_user
     enable_submodules true
     migrate false
     create_dirs_before_symlink %w{}
-    symlink_before_migrate({})
     symlinks({})
     shallow_clone false
     action :deploy
+    user new_resource.app_user
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
 
