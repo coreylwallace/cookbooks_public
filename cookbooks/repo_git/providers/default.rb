@@ -91,6 +91,7 @@ action :capistrano_pull do
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     user new_resource.app_user
+    repository_cache "#{new_resource.destination}"
     enable_submodules true
     migrate false
     create_dirs_before_symlink new_resource.create_dirs_before_symlink#%w{}
