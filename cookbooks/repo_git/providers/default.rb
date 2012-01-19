@@ -69,6 +69,10 @@ action :capistrano_pull do
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
+  if (dir_read(new_resource.destination)!=nil && file_exists?("#{new_resource.destination}/releases")== false )
+   File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
+  end
+
   ruby_block "Create key" do
     block do
       RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
