@@ -25,7 +25,7 @@ repo "repo_svn" do
 
  app_user "rightscale" #attribute :app_user, :kind_of => String
  create_dirs_before_symlink %w{log dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
- symlinks ({"log"=>"log"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
+ symlinks ({"log"=>"shared/applog"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
 
 end
 
