@@ -81,9 +81,9 @@ action :capistrano_pull do
     recursive true
   end
 
-  directory "#{new_resource.deploy_to.chomp}/shared/" do
-    recursive true
-  end
+#  directory "#{new_resource.deploy_to.chomp}/shared/" do
+#    recursive true
+#  end
 
   deploy "#{new_resource.destination}" do
     #deploy_to new_resource.deploy_to
