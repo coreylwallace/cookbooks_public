@@ -84,9 +84,9 @@ action :capistrano_pull do
     user new_resource.app_user
     enable_submodules true
     migrate false
-    create_dirs_before_symlink %w{}
+    create_dirs_before_symlink new_resource.create_dirs_before_symlink#%w{}
     symlink_before_migrate({})
-    symlinks({})
+    symlinks new_resource.symlinks #({})
     shallow_clone false
     action :deploy
     user new_resource.app_user
