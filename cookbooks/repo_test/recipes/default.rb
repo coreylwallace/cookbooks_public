@@ -13,6 +13,7 @@ rs_utils_marker :begin
 
 repo "repo_svn" do
   destination "/tmp/repo"
+  deploy_to "/tmp/repo_deplyed"
   repository node[:repo_test][:repository]
   revision node[:repo_test][:revision]
   provider_type node[:repo_test][:provider_type]
@@ -22,10 +23,10 @@ repo "repo_svn" do
   action :capistrano_pull
   provider node[:repo_test][:provider_type] #"repo_svn"
 
-  app_user "apache" #attribute :app_user, :kind_of => String
+ app_user "apache" #attribute :app_user, :kind_of => String
  create_dirs_before_symlink %w{dir1, dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
- symlink_before_migrate ({"dir1"=>"dir3"}) #attribute :symlink_before_migrate, :kind_of => Hash, :default => ({})
-attribute :symlinks, :kind_of => Hash, :default => ({})
+ symlinks ({"dir1"=>"dir3"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
+
 end
 
 rs_utils_marker :end

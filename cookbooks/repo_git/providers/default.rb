@@ -78,13 +78,14 @@ action :capistrano_pull do
   end
 
   deploy "#{new_resource.destination}/capistrano" do
-    deploy_to new_resource.destination
+    deploy_to new_resource.deploy_to
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     user new_resource.app_user
     enable_submodules true
     migrate false
     create_dirs_before_symlink %w{}
+    symlink_before_migrate({})
     symlinks({})
     shallow_clone false
     action :deploy
