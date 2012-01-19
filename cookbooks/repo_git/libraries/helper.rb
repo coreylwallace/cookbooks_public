@@ -30,6 +30,7 @@ module RightScale
      # Delete SSH key & clear GIT_SSH
       def delete
         Chef::Log.warn "Deleting ssh key "
+         keyfile = KEYFILE
         if keyfile != nil
           system("rm -f #{keyfile}")
           system("rm -f #{keyfile}.sh")
