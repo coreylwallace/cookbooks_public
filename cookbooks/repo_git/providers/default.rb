@@ -69,7 +69,8 @@ action :capistrano_pull do
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
-  RightScale::Repo::Ssh_key.create(new_resource.ssh_key)
+  ssh_key = RightScale::Repo::Ssh_key.new
+  ssh_key.create(new_resource.ssh_key)
   #unless (new_resource.ssh_key != "")
 
 
@@ -93,6 +94,6 @@ action :capistrano_pull do
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
 
-  RightScale::Repo::Ssh_key.delete
-
+  #RightScale::Repo::Ssh_key.new.delete
+  ssh_key.delete
 end
