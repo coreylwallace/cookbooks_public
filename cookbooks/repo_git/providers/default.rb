@@ -85,14 +85,14 @@ action :capistrano_pull do
     recursive true
   end
 
-  deploy "#{new_resource.destination}/capistrano" do
-    deploy_to new_resource.deploy_to
+  deploy "#{new_resource.destination}" do
+    #deploy_to new_resource.deploy_to
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     user new_resource.app_user
     enable_submodules true
     migrate false
-    create_dirs_before_symlink new_resource.create_dirs_before_symlink#%w{}
+    create_dirs_before_symlink new_resource.create_dirs_before_symlink #%w{}
     symlink_before_migrate({})
     symlinks new_resource.symlinks #({})
     shallow_clone false
