@@ -69,12 +69,20 @@ action :capistrano_pull do
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
-  ssh_key = RightScale::Repo::Ssh_key.new
-  ssh_key.create(new_resource.ssh_key)
+  ruby_block "Create key" do
+    block do
+      ssh_key = RightScale::Repo::Ssh_key.new
+      ssh_key.create(new_resource.ssh_key)
+    end
+  end
   #unless (new_resource.ssh_key != "")
 
 
   directory "#{new_resource.destination.chomp}/shared/" do
+    recursive true
+  end
+
+  directory "#{new_resource.deploy_to.chomp}" do
     recursive true
   end
 
@@ -95,5 +103,9 @@ action :capistrano_pull do
   end
 
   #RightScale::Repo::Ssh_key.new.delete
-  ssh_key.delete
+  ruby_block "Delete key" do
+    block do
+      ssh_key.delete
+    end
+  end
 end
