@@ -69,7 +69,7 @@ action :capistrano_pull do
   #RightScale::Repo::Helper.add_ssh_key
   #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
-  if (File.exists?("#{new_resource.destination}") == true && File.exists?("#{new_resource.destination}/releases") == false )
+  if (File.exist?("#{new_resource.destination}") == true && File.exist?("#{new_resource.destination}/releases") == false )
    File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
   end
 
