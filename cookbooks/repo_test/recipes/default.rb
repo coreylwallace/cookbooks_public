@@ -24,7 +24,7 @@ repo "repo_svn" do
 
   app_user "apache" #attribute :app_user, :kind_of => String
  create_dirs_before_symlink %w{dir1, dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
- symlink_before_migrate {'dir1' => 'dir3'} #attribute :symlink_before_migrate, :kind_of => Hash, :default => ({})
+ symlink_before_migrate ({"dir1"=>"dir3"}) #attribute :symlink_before_migrate, :kind_of => Hash, :default => ({})
 attribute :symlinks, :kind_of => Hash, :default => ({})
 end
 
