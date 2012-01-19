@@ -71,8 +71,7 @@ action :capistrano_pull do
 
   ruby_block "Create key" do
     block do
-      ssh_key = RightScale::Repo::Ssh_key.new
-      ssh_key.create(new_resource.ssh_key)
+      RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
     end
   end
   #unless (new_resource.ssh_key != "")
@@ -105,7 +104,7 @@ action :capistrano_pull do
   #RightScale::Repo::Ssh_key.new.delete
   ruby_block "Delete key" do
     block do
-      ssh_key.delete
+      RightScale::Repo::Ssh_key.new.delete
     end
   end
 end
