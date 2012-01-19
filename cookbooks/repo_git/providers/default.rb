@@ -73,7 +73,7 @@ action :capistrano_pull do
 
   ruby_block "Create key" do
     block do
-      if (Ruby::File.exists?("#{new_resource.destination}") == true && Ruby::File.exists?("#{new_resource.destination}/releases") == false )
+      if (::File.exists?("#{new_resource.destination}") == true && ::File.exists?("#{new_resource.destination}/releases") == false )
         File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
       end
 
