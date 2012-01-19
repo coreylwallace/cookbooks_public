@@ -13,7 +13,7 @@ rs_utils_marker :begin
 
 repo "repo_svn" do
   destination "/tmp/repo"
-  deploy_to "/tmp/repo_deplyed"
+  #deploy_to "/tmp/repo_deplyed"
   repository node[:repo_test][:repository]
   revision node[:repo_test][:revision]
   provider_type node[:repo_test][:provider_type]
