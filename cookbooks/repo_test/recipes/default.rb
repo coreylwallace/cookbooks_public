@@ -23,7 +23,7 @@ repo "repo_svn" do
   action :capistrano_pull
   provider node[:repo_test][:provider_type] #"repo_svn"
 
- app_user "apache" #attribute :app_user, :kind_of => String
+ app_user "rightscale" #attribute :app_user, :kind_of => String
  create_dirs_before_symlink %w{dir1, dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
  symlinks ({"dir1"=>"dir3"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
 
