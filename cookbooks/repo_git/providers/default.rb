@@ -71,10 +71,10 @@ action :capistrano_pull do
 
 
 
-  ruby_block "Create key" do
+  ruby_block "Before deployment" do
     block do
       if (::File.exists?("#{new_resource.destination}") == true && ::File.exists?("#{new_resource.destination}/releases") == false )
-        File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
+        ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
       end
 
       RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
