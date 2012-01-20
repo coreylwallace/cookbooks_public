@@ -71,16 +71,17 @@ action :capistrano_pull do
 
 
 
-  ruby_block "Before deployment" do
+  ruby_block "Before deploy" do
     block do
+      #check for previous repo in case of action change
       if (::File.exists?("#{new_resource.destination}") == true && ::File.exists?("#{new_resource.destination}/releases") == false )
         ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
       end
-
+      #ssh key
       RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
     end
   end
-  #unless (new_resource.ssh_key != "")
+
 
 
   directory "#{new_resource.destination.chomp}/shared/" do
@@ -108,9 +109,17 @@ action :capistrano_pull do
   end
 
   #RightScale::Repo::Ssh_key.new.delete
-  ruby_block "Delete key" do
+  ruby_block "After deploy" do
     block do
       RightScale::Repo::Ssh_key.new.delete
+      system("data=`/bin/date +%Y.%m.%d.%H.%M` && mv #{new_resource.destination}_old #{new_resource.destination}/releases/${data}_initial)")
     end
   end
+
+#  #moving old repo to releases folder
+#  bash "Copy old repo" do
+#    code <<-EOH
+#    data=`/bin/date +%Y.%m.%d.%H.%M` && mv #{new_resource.destination}_old #{new_resource.destination}/releases/${data}_initial
+#    EOH
+#  end
 end
