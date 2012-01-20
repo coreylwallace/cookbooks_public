@@ -86,12 +86,11 @@ action :capistrano_pull do
   ruby_block "Before deploy" do
     block do
       #check previous repo in case of action change
-        if (::File.exists?("#{new_resource.destination}") == true && ::File.exists?("/tmp/capistrano_repo") == false )
+      if (::File.exists?("#{new_resource.destination}") == true)
         ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
       end
-   #   if (::File.exists?("#{new_resource.destination}") == true && ::File.exists?("#{new_resource.destination}/releases") == false )
-    #    ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
-    #  end
+        #&& ::File.exists?("/tmp/capistrano_repo") == false
+
       #ssh key
       RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
     end
