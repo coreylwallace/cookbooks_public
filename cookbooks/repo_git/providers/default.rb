@@ -129,11 +129,14 @@ action :capistrano_pull do
       RightScale::Repo::Ssh_key.new.delete
       system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old /tmp/capistrano_repo/releases/${data}_initial")
 
+      Chef::Log.warn("app_root is #{new_resource.destination}")
+
       #checking last symbol of "destination" for correct work of "cp -d"
       if (new_resource.destination.end_with?("/"))
         repo_dest = new_resource.destination.chop
       end
       Chef::Log.warn("symlinking to #{repo_dest}")
+
       #linking "destination" directory to capistrano "current"
      system("cp -d /tmp/capistrano_repo/current #{repo_dest}")
     end
