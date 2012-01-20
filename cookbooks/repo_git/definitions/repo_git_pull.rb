@@ -11,7 +11,16 @@ define :repo_git_pull, :url => "", :branch => "master", :dest => "", :cred => ""
   
   # include the public recipe to install git
   include_recipe "git"
-   
+
+    ruby_block "Check for capistrano" do
+    block do
+      #check previous repo in case of action change
+      if (File.exists?("#{:url}") == true && ::File.exists?("#{:url}/releases") == true )
+        ::File.rename("#{:url}", "#{:url}_old")
+      end
+    end
+  end
+
   # add repository credentials
   keyfile = nil
   if "#{params[:cred]}" != ""
