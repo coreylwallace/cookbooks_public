@@ -99,7 +99,7 @@ action :capistrano_pull do
 
 
 
-  directory "#{new_resource.destination.chomp}/shared/" do
+  directory "#/tmp/capistrano_repo/shared/" do
     recursive true
   end
 
