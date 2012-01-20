@@ -127,7 +127,7 @@ action :capistrano_pull do
   ruby_block "After deploy" do
     block do
       RightScale::Repo::Ssh_key.new.delete
-      system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old #{new_resource.destination}/releases/${data}_initial")
+      system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old /tmp/capistrano_repo/releases/${data}_initial")
 
     end
   end
