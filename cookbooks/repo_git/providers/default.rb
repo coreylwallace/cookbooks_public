@@ -129,17 +129,24 @@ action :capistrano_pull do
       RightScale::Repo::Ssh_key.new.delete
       system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old /tmp/capistrano_repo/releases/${data}_initial")
 
+      #checking last symbol of "destination" for correct work of "cp -d"
+      if (new_resource.destination.end_with?("/"))
+        repo_dest = new_resource.destination.chop
+      end
+
+      #linking "destination" directory to capistrano "current"
+     system("cp -d /tmp/capistrano_repo/current #{repo_dest}")
+
     end
   end
-#linking repo directory to capistrano "current"
+
+
   link new_resource.destination do
    action :delete
    only_if "test -L #{new_resource.destination.chomp}"
   end
 
-  link new_resource.destination do
-    to "/tmp/capistrano_repo/current"
-  end
+
 
 
 end
