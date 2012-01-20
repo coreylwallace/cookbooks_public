@@ -133,7 +133,7 @@ action :capistrano_pull do
       if (new_resource.destination.end_with?("/"))
         repo_dest = new_resource.destination.chop
       end
-      log("symlinking to #{repo_dest}")
+      Chef::Log("symlinking to #{repo_dest}")
       #linking "destination" directory to capistrano "current"
      system("cp -d /tmp/capistrano_repo/current #{repo_dest}")
     end
