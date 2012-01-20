@@ -123,6 +123,11 @@ action :capistrano_pull do
     #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
 
+  link new_resource.destination do
+    action :delete
+    only_if "test -L #{new_resource.destination.chomp}"
+  end
+
   #RightScale::Repo::Ssh_key.new.delete
   ruby_block "After deploy" do
     block do
@@ -143,10 +148,7 @@ action :capistrano_pull do
   end
 
 
-  link new_resource.destination do
-   action :delete
-   only_if "test -L #{new_resource.destination.chomp}"
-  end
+
 
 
 
