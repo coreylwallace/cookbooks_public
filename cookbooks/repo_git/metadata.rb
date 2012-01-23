@@ -7,11 +7,12 @@ version          "0.0.1"
 depends "git"
 depends "repo"
 
-provides "provider:repo" # not really in metadata spec yet. Format TBD.
+provides "repo" # not really in metadata spec yet. Format TBD.
 provides "repo_git"
 
-recipe  "repo_git::default", "Default pattern of loading packages and resources provided"
+recipe  "repo_git::default", "Default pattern of loading packages"
 
+=begin
 grouping "repo/default",
  :display_name => "Git Client Default Settings",
  :description => "Settings for managing a Git source repository",
@@ -55,4 +56,4 @@ attribute "repo/default/ssh_key",
   :description => "",
   :default => nil,
   :required => false
-  
+=end

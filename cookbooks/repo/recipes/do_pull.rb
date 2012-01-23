@@ -10,7 +10,7 @@
 rs_utils_marker :begin
 
 
- #The sample that we will use in app servers "code_update" recipes
+
 repo "repo_svn" do
   destination "/tmp/repo"
   #deploy_to "/tmp/repo_deplyed"

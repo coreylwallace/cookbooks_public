@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: repo_svn
+# Cookbook Name:: repo
 # Recipe:: default
 #
 #
@@ -8,43 +8,36 @@
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
 
-PROVIDER_NAME = "repo_svn"  # grab this from cookbook directory name
 
-unless node[:platform] == "mac_os_x" then
-  # install subversion client
-  package "subversion" do
-    action :install
-  end
+# Setup all git resources that have attributes in the node.
+node[:repo].each do |resource_name, entry|
+#  if entry[:provider] == PROVIDER_NAME then
+   if entry[:provider] == "repo_git" then
 
-  extra_packages = case node[:platform]
-    when "ubuntu","debian"
-      if node[:platform_version].to_f < 8.04
-        %w{subversion-tools libsvn-core-perl}
-      else
-        %w{subversion-tools libsvn-perl}
-      end
-    when "centos","redhat","fedora"
-      %w{subversion-devel subversion-perl}
-    end
+    url = entry[:repository]
+    raise "ERROR: You did not specify a repository for repo resource named #{resource_name}." unless url
+    branch = (entry[:branch]) ? entry[:branch] : "master"
+    key = (entry[:ssh_key]) ? entry[:ssh_key] : ""
 
-  extra_packages.each do |pkg|
-    package pkg do
-      action :install
+    # Setup git client
+    repo resource_name do
+      provider "repo_git"
+      repository url
+      revision branch
+      ssh_key key
+      persist true
     end
   end
-end
 
-=begin
-# Setup all Subversion resources that have attributes in the node.
-node[:repo].each do |resource_name, entry| 
-  if entry[:provider] == PROVIDER_NAME then
+  if entry[:provider] == "repo_svn" then
+
     log "trying to pull svn repo at: #{entry[:repository]} with branch #{entry[:branch]}"
     url = entry[:repository]
     raise "ERROR: You did not specify a repository for repo resource named #{resource_name}." unless url
     branch = (entry[:branch]) ? entry[:branch] : "HEAD"
     username = (entry[:username]) ? entry[:username] : ""
     password = (entry[:password]) ? entry[:password] : ""
-    
+
     # Setup svn client
     repo resource_name do
       provider "repo_svn"
@@ -52,9 +45,9 @@ node[:repo].each do |resource_name, entry|
       revision branch
       svn_username username
       svn_password password
-      
-      persist true      # developed by RightScale (to contribute)
+      persist true
     end
   end
 end
-=end
+
+

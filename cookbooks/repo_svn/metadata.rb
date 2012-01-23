@@ -10,6 +10,7 @@ depends "repo"
 provides "repo"
 recipe  "repo_svn::default", "Default pattern of loading packages and resources provided"
 
+=begin
 grouping "repo/default",
    :display_name => "Subversion Client Default Settings",
    :description => "Settings for managing a Subversion source repository",
@@ -48,3 +49,4 @@ attribute "repo/default/arguments",
   :default => "",
   :required => "optional"
   
+=end

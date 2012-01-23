@@ -91,25 +91,17 @@ action :capistrano_pull do
       elsif (::File.exists?("#{new_resource.destination}") == true && ::File.symlink?("#{new_resource.destination}") == true && ::File.exists?("/tmp/capistrano_repo") == false)
         ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
       end
-
-
       #ssh key
       RightScale::Repo::Ssh_key.new.create(new_resource.ssh_key)
     end
   end
 
 
-
   directory "/tmp/capistrano_repo/shared/" do
     recursive true
   end
 
-#  directory "#{new_resource.deploy_to.chomp}/shared/" do
-#    recursive true
-#  end
-
   deploy "/tmp/capistrano_repo" do
-    #deploy_to new_resource.deploy_to
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     user new_resource.app_user
@@ -147,11 +139,5 @@ action :capistrano_pull do
      system("cp -d /tmp/capistrano_repo/current #{repo_dest}")
     end
   end
-
-
-
-
-
-
 
 end

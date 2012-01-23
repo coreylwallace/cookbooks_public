@@ -2,26 +2,10 @@
 # Cookbook Name:: repo_svn
 # Provider:: repo_svn
 #
-# Copyright (c) 2010 RightScale Inc
 #
-# Permission is hereby granted, free of charge, to any person obtaining
-# a copy of this software and associated documentation files (the
-# "Software"), to deal in the Software without restriction, including
-# without limitation the rights to use, copy, modify, merge, publish,
-# distribute, sublicense, and/or sell copies of the Software, and to
-# permit persons to whom the Software is furnished to do so, subject to
-# the following conditions:
-#
-# The above copyright notice and this permission notice shall be
-# included in all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-# LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-# OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-# WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+# Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
+# RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
+# if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
 action :pull do
  
@@ -52,4 +36,67 @@ action :pull do
     end
   end
  
+end
+
+
+action :capistrano_pull do
+  Log "Started capistrano git deployment creation"
+  #RightScale::Repo::Helper.add_ssh_key
+  #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
+
+  ruby_block "Before deploy" do
+    block do
+      #check previous repo in case of action change
+      if (::File.exists?("#{new_resource.destination}") == true && ::File.symlink?("#{new_resource.destination}") == false)
+        ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
+      elsif (::File.exists?("#{new_resource.destination}") == true && ::File.symlink?("#{new_resource.destination}") == true && ::File.exists?("/tmp/capistrano_repo") == false)
+        ::File.rename("#{new_resource.destination}", "#{new_resource.destination}_old")
+      end
+    end
+  end
+
+
+  directory "/tmp/capistrano_repo/shared/" do
+    recursive true
+  end
+
+  deploy "/tmp/capistrano_repo" do
+    scm_provider Chef::Provider::Subversion
+    repo "#{new_resource.repository.chomp}"
+    revision new_resource.revision
+    svn_username new_resource.svn_username
+    svn_password new_resource.svn_password
+    svn_arguments "--no-auth-cache --non-interactive"
+    user new_resource.app_user
+    migrate false
+    create_dirs_before_symlink new_resource.create_dirs_before_symlink #%w{}
+    symlink_before_migrate({})
+    symlinks new_resource.symlinks #({})
+    action :deploy
+    user new_resource.app_user
+    #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
+  end
+
+  link new_resource.destination do
+    action :delete
+    only_if "test -L #{new_resource.destination.chomp}"
+  end
+
+  #RightScale::Repo::Ssh_key.new.delete
+  ruby_block "After deploy" do
+    block do
+      system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old /tmp/capistrano_repo/releases/${data}_initial")
+
+      repo_dest = new_resource.destination
+      #checking last symbol of "destination" for correct work of "cp -d"
+      if (new_resource.destination.end_with?("/"))
+        repo_dest = new_resource.destination.chop
+      end
+      Chef::Log.warn("symlinking to #{repo_dest}")
+
+      #linking "destination" directory to capistrano "current"
+     system("cp -d /tmp/capistrano_repo/current #{repo_dest}")
+    end
+  end
+
 end
