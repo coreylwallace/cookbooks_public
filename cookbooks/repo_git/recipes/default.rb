@@ -7,6 +7,8 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
+rs_utils_marker :begin
+
 unless node[:platform] == "mac_os_x" then
   # Install git client
   case node[:platform]
@@ -20,6 +22,8 @@ unless node[:platform] == "mac_os_x" then
   package "git-svn"
   package "git-email"
 end
+
+rs_utils_marker :end
 
 =begin
 # Setup all git resources that have attributes in the node.

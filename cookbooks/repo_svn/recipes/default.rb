@@ -7,6 +7,7 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
+rs_utils_marker :begin
 
 PROVIDER_NAME = "repo_svn"  # grab this from cookbook directory name
 
@@ -34,6 +35,7 @@ unless node[:platform] == "mac_os_x" then
   end
 end
 
+rs_utils_marker :end
 =begin
 # Setup all Subversion resources that have attributes in the node.
 node[:repo].each do |resource_name, entry| 

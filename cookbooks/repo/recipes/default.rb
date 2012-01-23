@@ -7,7 +7,7 @@
 # RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
-
+rs_utils_marker :begin
 
 # Setup all git resources that have attributes in the node.
 node[:repo].each do |resource_name, entry|
@@ -49,5 +49,8 @@ node[:repo].each do |resource_name, entry|
     end
   end
 end
+
+
+rs_utils_marker :end
 
 

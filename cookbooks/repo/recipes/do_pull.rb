@@ -1,11 +1,12 @@
 #
-# Cookbook Name:: test
-# Recipe:: default
+# Cookbook Name:: repo
+# Recipe:: do_pull
 #
-# Copyright 2011, YOUR_COMPANY_NAME
 #
-# All rights reserved - Do Not Redistribute
-#
+# Copyright RightScale, Inc. All rights reserved.  All access and use subject to the
+# RightScale Terms of Service available at http://www.rightscale.com/terms.php and,
+# if applicable, other agreements such as a RightScale Master Subscription Agreement.
+
 
 rs_utils_marker :begin
 
