@@ -11,9 +11,9 @@ action :pull do
   
 # Check variables and log/skip if not set
 #skip, reason = true, "DB/Schema name not provided"           if node[:db][:dump][:database_name] == ""
-skip, reason = true, "Repo container name not provided"      if new_resource.repo_container_prefix == ""   #node[:db][:dump][:prefix]
+skip, reason = true, "Repo container name not provided"      if new_resource.prefix == ""   #node[:db][:dump][:prefix]
 skip, reason = true, "Storage account provider not provided" if new_resource.storage_account_provider == ""  #node[:db][:dump][:storage_account_provider]
-skip, reason = true, "Container not provided"                if new_resource.repo_container == ""  #node[:db][:dump][:container]
+skip, reason = true, "Container not provided"                if new_resource.container == ""  #node[:db][:dump][:container]
 
   if skip
     log "Skipping import: #{reason}"
@@ -22,7 +22,7 @@ skip, reason = true, "Container not provided"                if new_resource.rep
     #db_name      = node[:db][:dump][:database_name]
     prefix       = node[:db][:dump][:prefix]
     tmp_repo_path = "/tmp/" + prefix + ".gz" #dumpfilepath
-    container    = new_resource.repo_container #node[:db][:dump][:container]
+    container    = new_resource.container #node[:db][:dump][:container]
     cloud        = ( new_resource.storage_account_provider == "CloudFiles" ) ? "rackspace" : "ec2"
 
   # Obtain the source from ROS
