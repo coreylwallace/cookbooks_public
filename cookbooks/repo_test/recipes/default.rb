@@ -11,13 +11,13 @@ rs_utils_marker :begin
 
 #Upload test repo to ROS
 
-cookbook_file "/tmp/examples.tar.gz" do
+cookbook_file "/tmp/example.tar.gz" do
   source "examples.tar.gz"
 end
 
 #dumpfilename = node[:repo_test][:prefix] + "-" + Time.now.strftime("%Y%m%d%H%M") + ".gz"
-test_file = "/tmp/examples.tar.gz"
-cloud_file = "examples.tar.gz"
+test_file = "/tmp/example.tar.gz"
+cloud_file = "example.tar.gz"
 #databasename = node[:repo_test][:database_name]
 
 container   = node[:repo_test][:container]
