@@ -9,8 +9,7 @@
   },
   "dependencies": {
     "rs_utils": ">= 0.0.0",
-    "repo": ">= 0.0.0",
-    "repo_svn": ">= 0.0.0"
+    "repo": ">= 0.0.0"
   },
   "recommendations": {
   },
