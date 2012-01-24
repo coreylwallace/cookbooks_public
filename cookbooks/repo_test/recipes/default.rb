@@ -17,14 +17,14 @@ end
 
 #dumpfilename = node[:repo_test][:prefix] + "-" + Time.now.strftime("%Y%m%d%H%M") + ".gz"
 test_file = "/tmp/examples.tar.gz"
-
-databasename = node[:repo_test][:database_name]
+cloud_file = "/tmp/examples.tar.gz"
+#databasename = node[:repo_test][:database_name]
 
 container   = node[:repo_test][:container]
 cloud       = ( node[:repo_test][:storage_account_provider] == "CloudFiles" ) ? "rackspace" : "ec2"
 
 execute "Upload dumpfile to Remote Object Store" do
-  command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{cloud} --container #{container} --dest #{dumpfilename} --source #{test_file}"
+  command "/opt/rightscale/sandbox/bin/ros_util put --cloud #{cloud} --container #{container} --dest #{cloud_file} --source #{test_file}"
   environment ({
     'STORAGE_ACCOUNT_ID' => node[:repo_test][:storage_account_id],
     'STORAGE_ACCOUNT_SECRET' => node[:repo_test][:storage_account_secret]

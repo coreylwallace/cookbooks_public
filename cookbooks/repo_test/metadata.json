@@ -116,9 +116,7 @@
         "CloudFiles"
       ],
       "recipes": [
-        "db::do_dump_import",
-        "db::do_dump_export",
-        "db::do_dump_schedule_enable"
+        "repo_test::default"
       ],
       "calculated": false,
       "type": "string"
