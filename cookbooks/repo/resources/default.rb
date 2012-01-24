@@ -63,7 +63,7 @@ attribute :environment, :kind_of => Hash, :default => ({})
 #ROS
 
 #@group[ROS attributes] The prefix that will be used to name/locate the backup of a particular code repo.
-attribute :repo_container_prefix, :kind_of => String
+attribute :prefix, :kind_of => String
 
 #@group[ROS attributes] Location where dump file will be saved. Used by dump recipes to back up to Amazon S3 or Rackspace Cloud Files.
 attribute :storage_account_provider, :kind_of => String
