@@ -6,7 +6,7 @@ version          "0.0.1"
 
 depends "rs_utils"
 depends "repo"
-depends "repo_svn"
+
 
 recipe "repo_test::default", "test recipe for repo* providers"
 

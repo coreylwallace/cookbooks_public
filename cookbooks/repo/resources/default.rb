@@ -70,7 +70,7 @@ attribute :storage_account_provider, :kind_of => String
 
 #@group[ROS attributes] The cloud storage location where the dump file will be restored from.
 #  For Amazon S3, use the bucket name. For Rackspace Cloud Files, use the container name.
-attribute :repo_container, :kind_of => String
+attribute :container, :kind_of => String
 
 #@group[ROS attributes] In order to read/write the container file to the specified cloud storage location, you need to provide cloud authentication credentials.
 #  For Amazon S3, use your Amazon access key ID (e.g., cred:AWS_ACCESS_KEY_ID).
