@@ -20,8 +20,8 @@ skip, reason = true, "Container not provided"                if new_resource.con
   else
 
     #db_name      = node[:db][:dump][:database_name]
-    prefix       = node[:db][:dump][:prefix]
-    tmp_repo_path = "/tmp/" + prefix + ".gz" #dumpfilepath
+    prefix       = new_resource.prefix
+    tmp_repo_path = "/tmp/" + prefix #dumpfilepath
     container    = new_resource.container #node[:db][:dump][:container]
     cloud        = ( new_resource.storage_account_provider == "CloudFiles" ) ? "rackspace" : "ec2"
 
