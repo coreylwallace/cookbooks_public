@@ -17,7 +17,7 @@ end
 
 #dumpfilename = node[:repo_test][:prefix] + "-" + Time.now.strftime("%Y%m%d%H%M") + ".gz"
 test_file = "/tmp/examples.tar.gz"
-cloud_file = "/tmp/examples.tar.gz"
+cloud_file = "examples.tar.gz"
 #databasename = node[:repo_test][:database_name]
 
 container   = node[:repo_test][:container]
@@ -42,7 +42,7 @@ repo "repo_svn" do
   svn_username node[:repo_test][:svn_username]
   svn_password node[:repo_test][:svn_password]
   ssh_key node[:repo_test][:ssh_key]
-  action :capistrano_pull
+  action :pull
   provider node[:repo_test][:provider_type] #"repo_svn"
 
   app_user "rightscale" #attribute :app_user, :kind_of => String
