@@ -52,7 +52,7 @@ attribute "repo_test/storage_account_provider",
   :description => "Location where dump file will be saved. Used by dump recipes to back up to Amazon S3 or Rackspace Cloud Files.",
   :required => "required",
   :choice => [ "S3", "CloudFiles" ],
-  :recipes => [ "db::do_dump_import", "db::do_dump_export", "db::do_dump_schedule_enable" ]
+  :recipes => [ "repo_test::default"]
 
 attribute "repo_test/storage_account_id",
   :display_name => "Dump Storage Account ID",
