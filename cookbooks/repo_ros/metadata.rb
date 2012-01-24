@@ -9,7 +9,7 @@ depends "rs_tools"
 
 
 provides "repo"
-
+provides "repo_ros"
 recipe  "repo_ros::default", "Default pattern of loading packages and resources provided"
 
 =begin
