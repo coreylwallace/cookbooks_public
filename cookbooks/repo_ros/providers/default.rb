@@ -9,7 +9,7 @@
 
 action :pull do
 
-      log "trying to get ros repo from: #{new_resource.storage_account_provider}, bucket: #{new_resource.container]}"
+      log "trying to get ros repo from: #{new_resource.storage_account_provider}, bucket: #{new_resource.container}"
 
     raise "Repo container name not provided." unless new_resource.container
     raise "Storage account provider ID not provided" unless new_resource.storage_account_id
