@@ -49,8 +49,11 @@ action :pull do
   end
 
   # delete SSH key & clear GIT_SSH
-     RightScale::Repo::Ssh_key.new.delete
-
+  ruby_block "After deploy" do
+    block do
+      RightScale::Repo::Ssh_key.new.delete
+    end
+  end
  
 end
 
