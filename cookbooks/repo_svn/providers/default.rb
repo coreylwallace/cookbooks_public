@@ -41,8 +41,6 @@ end
 
 action :capistrano_pull do
   Log "Started capistrano git deployment creation"
-  #RightScale::Repo::Helper.add_ssh_key
-  #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
 
   ruby_block "Before deploy" do
     block do
@@ -60,8 +58,10 @@ action :capistrano_pull do
     recursive true
   end
 
+  scm_prov = Chef::Provider::Subversion
+
   deploy "/tmp/capistrano_repo" do
-    scm_provider Chef::Provider::Subversion
+    scm_provider scm_prov
     repo "#{new_resource.repository.chomp}"
     revision new_resource.revision
     svn_username new_resource.svn_username
@@ -73,8 +73,6 @@ action :capistrano_pull do
     symlink_before_migrate({})
     symlinks new_resource.symlinks #({})
     action :deploy
-    user new_resource.app_user
-    #restart_command "touch tmp/restart.txt" #"/etc/init.d/tomcat6 restart"
   end
 
   link new_resource.destination do
@@ -82,7 +80,7 @@ action :capistrano_pull do
     only_if "test -L #{new_resource.destination.chomp}"
   end
 
-  #RightScale::Repo::Ssh_key.new.delete
+
   ruby_block "After deploy" do
     block do
       system("data=`/bin/date +%Y%m%d%H%M%S` && mv #{new_resource.destination}_old /tmp/capistrano_repo/releases/${data}_initial")

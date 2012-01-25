@@ -14,20 +14,21 @@ rs_utils_marker :begin
 
 repo "repo_svn" do
   destination "/tmp/repo"
-  #deploy_to "/tmp/repo_deplyed"
-  repository node[:repo_test][:repository]
-  revision node[:repo_test][:revision]
-  provider_type node[:repo_test][:provider_type]
-  svn_username node[:repo_test][:svn_username]
-  svn_password node[:repo_test][:svn_password]
-  ssh_key node[:repo_test][:ssh_key]
+  repository node[:repo][:default][:repository]
+  revision node[:repo][:default][:revision]
   action :capistrano_pull
-  provider node[:repo_test][:provider_type] #"repo_svn"
-
- app_user "rightscale" #attribute :app_user, :kind_of => String
- create_dirs_before_symlink %w{log dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
- symlinks ({"log"=>"public/log"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
-
+  provider node[:repo][:default][:provider]
+  #svn
+  svn_username node[:repo][:svn][:svn_username]
+  svn_password node[:repo][:svn][:svn_password]
+  #git
+  ssh_key node[:repo][:git][:ssh_key]
+  #ros
+  storage_account_provider node[:repo][:ros][:storage_account_provider]
+  storage_account_id node[:repo_test][:ros][:storage_account_id]
+  storage_account_secret node[:repo_test][:ros][:storage_account_secret]
+  container node[:repo_test][:ros][:container]
+  prefix node[:repo_test][:ros][:prefix]
 end
 
 rs_utils_marker :end

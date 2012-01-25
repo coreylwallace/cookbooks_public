@@ -7,53 +7,7 @@ version          "0.0.1"
 depends "git"
 depends "repo"
 
-provides "repo" # not really in metadata spec yet. Format TBD.
+provides "repo"
 provides "repo_git"
 
 recipe  "repo_git::default", "Default pattern of loading packages"
-
-=begin
-grouping "repo/default",
- :display_name => "Git Client Default Settings",
- :description => "Settings for managing a Git source repository",
- :databag => true       # proposed metadata addition
-
-attribute "repo/default/provider",
-  :display_name => "Repository Provider Type",
-  :description => "",
-  :default => "repo_git"
-
-attribute "repo/default/repository",
-  :display_name => "Repository Url",
-  :description => "",
-  :required => true
-  
-attribute "repo/default/branch",
-  :display_name => "Branch/Tag",
-  :description => "",
-  :required => false
-
-attribute "repo/default/depth",
-  :display_name => "Depth",
-  :description => "",
-  :default => nil,
-  :required => false
-
-attribute "repo/default/enable_submodules",
-  :display_name => "Enable Submodules",
-  :description => "",
-  :default => "false",
-  :required => false
-
-attribute "repo/default/remote",
-  :display_name => "Remote",
-  :description => "",
-  :default => "origin",
-  :required => false
-  
-attribute "repo/default/ssh_key",
-  :display_name => "SSH Key",
-  :description => "",
-  :default => nil,
-  :required => false
-=end

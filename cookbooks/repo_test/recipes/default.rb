@@ -33,18 +33,18 @@ end
  #The sample that we will use in app servers "code_update" recipes
 repo "repo_svn" do
   destination "/tmp/repo"
-#  repository node[:repo_test][:repository]
-#  revision node[:repo_test][:revision]
-  provider_type node[:repo_test][:provider_type]
-#  svn_username node[:repo_test][:svn_username]
-#  svn_password node[:repo_test][:svn_password]
-#  ssh_key node[:repo_test][:ssh_key]
+  repository node[:repo_test][:repository]
+  revision node[:repo_test][:revision]
+#  provider_type node[:repo_test][:provider_type]
+  svn_username node[:repo_test][:svn_username]
+  svn_password node[:repo_test][:svn_password]
+  ssh_key node[:repo_test][:ssh_key]
   action :pull
   provider node[:repo_test][:provider_type] #"repo_svn"
 
-#  app_user "rightscale" #attribute :app_user, :kind_of => String
-#  create_dirs_before_symlink %w{log dir2} #attribute :create_dirs_before_symlink, :kind_of => Array, :default => %w{}
-#  symlinks ({"log"=>"public/log"}) #attribute :symlinks, :kind_of => Hash, :default => ({})
+  app_user "rightscale"
+  create_dirs_before_symlink %w{log dir2}
+  symlinks ({"log"=>"public/log"})
 
   storage_account_provider node[:repo_test][:storage_account_provider]
   storage_account_id node[:repo_test][:storage_account_id]

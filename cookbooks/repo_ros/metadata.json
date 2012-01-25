@@ -18,8 +18,7 @@
   "conflicting": {
   },
   "providing": {
-    "repo": ">= 0.0.0",
-    "repo_ros": ">= 0.0.0"
+    "repo": ">= 0.0.0"
   },
   "replacing": {
   },

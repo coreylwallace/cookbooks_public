@@ -21,21 +21,6 @@ action :pull do
     end
   end
 
-  # add ssh key and exec script
-#  keyfile = nil
-#  keyname = new_resource.ssh_key
-#  if "#{keyname}" != ""
-#    keyfile = "/tmp/gitkey"
-#    bash 'create_temp_git_ssh_key' do
-#      code <<-EOH
-#        echo -n '#{keyname}' > #{keyfile}
-#        chmod 700 #{keyfile}
-#        echo 'exec ssh -oStrictHostKeyChecking=no -i #{keyfile} "$@"' > #{keyfile}.sh
-#        chmod +x #{keyfile}.sh
-#      EOH
-#    end
-#  end
-
   # pull repo (if exist)
   ruby_block "Pull existing git repository at #{new_resource.destination}" do
     only_if do ::File.directory?(new_resource.destination) end
@@ -65,23 +50,12 @@ action :pull do
 
   # delete SSH key & clear GIT_SSH
      RightScale::Repo::Ssh_key.new.delete
-#  if keyfile != nil
-#     bash 'delete_temp_git_ssh_key' do
-#       code <<-EOH
-#         rm -f #{keyfile}
-#         rm -f #{keyfile}.sh
-#       EOH
-#     end
-#  end
+
  
 end
 
 action :capistrano_pull do
   Log "Started capistrano git deployment creation"
-  #RightScale::Repo::Helper.add_ssh_key
-  #RightScale::Repo::Helper.new.capistrano_pull(new_resource.destination,new_resource.repository,new_resource.revision)
-
-
 
   ruby_block "Before deploy" do
     block do
