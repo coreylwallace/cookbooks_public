@@ -43,7 +43,7 @@ attribute :ssh_key, :kind_of => String
 #Capistrano
 
 #@group[Capistrano attributes] The "meta root" for your application.
-attribute :deploy_to, :kind_of => String
+#attribute :deploy_to, :kind_of => String
 
 #@group[Capistrano attributes] System user to run the deploy as
 attribute :app_user, :kind_of => String

@@ -8,15 +8,22 @@
 # if applicable, other agreements such as a RightScale Master Subscription Agreement.
 
 action :pull do
-  
-  # Check variables and log/skip if not set
-  skip, reason = true, "Repo container name not provided"      if new_resource.prefix == ""
-  skip, reason = true, "Storage account provider not provided" if new_resource.storage_account_provider == ""
-  skip, reason = true, "Container not provided"                if new_resource.container == ""
 
-  if skip
-    log "Skipping import: #{reason}"
-  else
+      log "trying to get ros repo from: #{new_resource.storage_account_provider}, bucket: #{new_resource.container]}"
+
+    raise "Repo container name not provided." unless new_resource.container
+    raise "Storage account provider ID not provided" unless new_resource.storage_account_id
+    raise "Storage account secret not provided" unless new_resource.storage_account_secret
+
+
+  # Check variables and log/skip if not set
+#  skip, reason = true, "Repo container name not provided"      if new_resource.prefix == ""
+#  skip, reason = true, "Storage account provider not provided" if new_resource.storage_account_provider == ""
+#  skip, reason = true, "Container not provided"                if new_resource.container == ""
+
+#  if skip
+#    log "Skipping import: #{reason}"
+#  else
 
   prefix       = new_resource.prefix
   tmp_repo_path = "/tmp/" + prefix
@@ -32,7 +39,7 @@ action :pull do
       'STORAGE_ACCOUNT_SECRET' => new_resource.storage_account_secret
     })
   end
-
+log "ROS get finished"
 =begin
   #Bash : unpack repo_path -> new_resource.destination
   bash "Unpack source to project folder" do
@@ -44,7 +51,7 @@ action :pull do
   end
 =end
 
-  end
+#  end
 
 end
 
