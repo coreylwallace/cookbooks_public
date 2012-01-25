@@ -27,8 +27,7 @@ action :pull do
     block do
       Dir.chdir new_resource.destination
       puts "Updating existing repo at #{new_resource.destination}"
-      ENV["GIT_SSH"] = "#{keyfile}.sh" unless ("#{keyfile}" == "")
-      puts `git pull` 
+      puts `git pull`
     end
   end
 
@@ -37,7 +36,6 @@ action :pull do
     not_if do ::File.directory?(new_resource.destination) end
     block do
       puts "Creating new repo at #{new_resource.destination}"
-      ENV["GIT_SSH"] = "#{keyfile}.sh" unless ("#{keyfile}" == "")
       puts `git clone #{new_resource.repository} -- #{new_resource.destination}`
       branch = new_resource.revision
       if "#{branch}" != "master" 
@@ -49,7 +47,7 @@ action :pull do
   end
 
   # delete SSH key & clear GIT_SSH
-  ruby_block "After deploy" do
+  ruby_block "After pull" do
     block do
       RightScale::Repo::Ssh_key.new.delete
     end
