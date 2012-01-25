@@ -8,6 +8,7 @@
 rs_utils_marker :begin
 
 package "ruby" if node[:platform] == 'centos'
+package "ruby" if node[:platform] == 'ubuntu'
 package "debian-helper-scripts" if node[:platform] == 'ubuntu' && node[:lsb][:codename] == 'hardy'
 
 include_recipe "rs_utils::setup_server_tags"
