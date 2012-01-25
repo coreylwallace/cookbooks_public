@@ -35,7 +35,7 @@ repo "Get code repo" do
   destination "/tmp/repo"
   repository node[:repo_test][:repository]
   revision node[:repo_test][:revision]
-  provider_type node[:repo_test][:provider_type]
+#  provider_type node[:repo_test][:provider_type]
   svn_username node[:repo_test][:svn_username]
   svn_password node[:repo_test][:svn_password]
   ssh_key node[:repo_test][:ssh_key]
