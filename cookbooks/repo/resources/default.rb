@@ -24,6 +24,9 @@ attribute :revision, :kind_of => String
 # provider which will be used repo_git, repo_svn, repo_ros
 attribute :provider, :kind_of => String
 
+# provider which will be used repo_git, repo_svn, repo_ros
+attribute :provider_type, :kind_of => String
+
 #Subversion only
 
 #@group[Subversion only] Subversion username
