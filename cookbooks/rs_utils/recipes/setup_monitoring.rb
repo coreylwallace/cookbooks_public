@@ -28,7 +28,7 @@ installed_ver = (node[:platform] =~ /redhat|centos/) ? `rpm -q --queryformat %{V
 installed = (installed_ver == "") ? false : true
 log 'Collectd package not installed' unless installed
 log "Checking installed collectd version: installed #{installed_ver}" if installed
-
+ 
 # Remove existing version of collectd
 
 # dpkg will remove the older package if it is a different version so do not need to worry about it.

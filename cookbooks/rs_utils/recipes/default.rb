@@ -15,5 +15,5 @@ include_recipe "rs_utils::setup_timezone"
 include_recipe "rs_utils::setup_logging"
 include_recipe "rs_utils::setup_mail"
 include_recipe "rs_utils::setup_monitoring"
-
+ 
 rs_utils_marker :end
