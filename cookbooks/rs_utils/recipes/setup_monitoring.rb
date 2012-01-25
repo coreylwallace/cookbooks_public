@@ -19,6 +19,7 @@ node[:rs_utils][:process_list_ary] = node[:rs_utils][:process_list].split | node
 # TODO: move these packages into RightScale specific mirror to improve
 #       cookbook download time.
 #
+package "libltdl7" if node[:platform] == 'ubuntu'
 package "librrd4" if node[:platform] == 'ubuntu'
 
 arch = (node[:kernel][:machine] == "x86_64") ? "64" : "i386"
