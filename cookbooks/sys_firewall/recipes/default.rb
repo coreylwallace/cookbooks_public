@@ -7,6 +7,8 @@
 
 rs_utils_marker :begin
 
+package "ruby"
+
 if node[:sys_firewall][:enabled] == "enabled" 
   include_recipe "iptables"
   sys_firewall "22" # SSH
