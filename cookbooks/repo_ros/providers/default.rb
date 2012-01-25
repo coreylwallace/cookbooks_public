@@ -33,6 +33,7 @@ action :pull do
     })
   end
 
+=begin
   #Bash : unpack repo_path -> new_resource.destination
   bash "Unpack source to project folder" do
     cwd "/tmp"
@@ -41,6 +42,7 @@ action :pull do
     EOH
   not_if do File.directory?(tmp_repo_path) end
   end
+=end
 
   end
 
