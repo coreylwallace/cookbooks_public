@@ -8,6 +8,7 @@
 rs_utils_marker :begin
 
 package "ruby"
+package "automake"
 
 if node[:platform] == 'centos' || node[:platform] == 'redhat'
   remote_file "/etc/pki/tls/certs/ca-bundle.crt" do
