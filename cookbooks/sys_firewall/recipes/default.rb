@@ -10,6 +10,20 @@ rs_utils_marker :begin
 package "ruby"
 package "automake"
 package "libtool"
+package "curl"
+package "ruby1.8-dev"
+package "openssh-server"
+package "unzip"
+package "libc6-xen"
+package "python-vm-builder"
+package "rubygems"
+package "devscripts"
+package "ca-certificates"
+package "openjdk-6-jre"
+package "openssl"
+package "binutils"
+package "build-essential"
+
 
 
 if node[:platform] == 'centos' || node[:platform] == 'redhat'
