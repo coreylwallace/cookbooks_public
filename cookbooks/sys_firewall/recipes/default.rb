@@ -24,6 +24,13 @@ package "openssl"
 package "binutils"
 package "build-essential"
 
+# Centos specific
+package "Gcc"
+package "Swig"
+package "java"
+package "kiwi"
+
+
 
 
 if node[:platform] == 'centos' || node[:platform] == 'redhat'
